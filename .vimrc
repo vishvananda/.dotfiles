@@ -1,0 +1,38 @@
+syntax on
+set number
+colorscheme ir_black
+highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$\|\t\+/
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set hlsearch
+"set foldmethod=indent
+"nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
+"vnoremap <Space> zf
+filetype plugin indent on
+set guifont=DejaVu\ Sans\ Mono\ 10
+set mouse=a
+filetype plugin on
+" Taglist variables
+" Display function name in status bar:
+let g:ctags_statusline=1
+" Automatically start script
+let generate_tags=1
+" Displays taglist results in a vertical window:
+let Tlist_Use_Horiz_Window=0
+" Shorter commands to toggle Taglist display
+nnoremap TT :TlistToggle<CR>
+map <F4> :TlistToggle<CR>
+" Various Taglist diplay config:
+let Tlist_Use_Right_Window = 1
+let Tlist_Compact_Format = 1
+let Tlist_Exit_OnlyWindow = 1
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_File_Fold_Auto_Close = 1
+"nmap <C-o> :NERDTreeToggle<CR>
+nmap <buffer> <F5> :w<Esc>:!python %<CR>
