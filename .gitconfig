@@ -1,0 +1,7 @@
+[user]
+	email = vishvananda@gmail.com
+	name = Vishvananda Ishaya
+[color]
+	ui = auto
+[core]
+	excludes = /home/vishvananda/.gitignore
