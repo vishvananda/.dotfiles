@@ -37,5 +37,5 @@ let Tlist_File_Fold_Auto_Close = 1
 "nmap <C-o> :NERDTreeToggle<CR>
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
