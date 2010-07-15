@@ -145,5 +145,6 @@ export PATH=/usr/local/bin:$PATH
 
 alias vi="/usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/MacOS/Vim"
 alias vim="/usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/MacOS/Vim"
+export EDITOR="/usr/local/Cellar/macvim/HEAD/MacVim.app/Contents/MacOS/Vim"
 export CLICOLOR=1
 export LSCOLORS=Gxfxcxdxbxegedabagacad
