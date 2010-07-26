@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/vishvananda/.xmonad'
-let g:netrw_dirhist_2='/home/vishvananda/riakapachelog/riak'
-let g:netrw_dirhist_3='/home/vishvananda/cc'
-let g:netrw_dirhist_4='/home/vishvananda/nasa/cc/nova'
-let g:netrw_dirhist_5='/home/vishvananda/nova'
-let g:netrw_dirhist_6='/home/vishvananda/nasa/cc/patches/patch_0001_14eeb29900dafa77b2a17ba5cf1795a57a8dfa76'
