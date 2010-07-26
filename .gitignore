@@ -1,3 +1,7 @@
 *
-!.git*
-!.bash*
+!.gitignore*
+!.gitconfig
+!.bashrc
+!.bash_profile
+!.vim*
+.viminfo

@@ -4,4 +4,4 @@
 [color]
 	ui = auto
 [core]
-	excludes = /home/vishvananda/.gitignore
+	excludes = /home/vishvananda/.gitignore_global
