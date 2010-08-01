@@ -1,6 +1,5 @@
 syntax on
 set number
-colorscheme ir_black
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
 autocmd BufWritePre * :%s/\s\+$//e
@@ -39,3 +38,11 @@ nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
+if &term =~ '^\(xterm\|screen\)$' && $COLORTERM == 'gnome-terminal'
+  set t_Co=256
+endif
+colorscheme ir_black
+if &t_Co != 256
+  let g:CSApprox_loaded=0
+  colorscheme elflord
+endif
