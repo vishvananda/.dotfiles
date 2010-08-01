@@ -33,7 +33,7 @@ let Tlist_Compact_Format = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
-"nmap <C-o> :NERDTreeToggle<CR>
+nmap <C-P> :NERDTreeToggle<CR>
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
@@ -44,5 +44,4 @@ endif
 colorscheme ir_black
 if &t_Co != 256
   let g:CSApprox_loaded=0
-  colorscheme elflord
 endif
