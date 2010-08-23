@@ -38,7 +38,7 @@ nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
-if &term =~ '^\(xterm\|screen\)$'
+if &term =~ '^\(xterm\|screen\)'
   set t_Co=256
 endif
 colorscheme ir_black
