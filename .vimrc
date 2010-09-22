@@ -10,6 +10,12 @@ set shiftwidth=4
 set smarttab
 set expandtab
 set hlsearch
+set wildmenu
+set wildmode=list:longest
+set history=1000
+let mapleader=","
+set scrolloff=3
+" Uncomment the following for code folding with spacebar
 "set foldmethod=indent
 "nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
 "vnoremap <Space> zf
@@ -25,16 +31,21 @@ let generate_tags=1
 " Displays taglist results in a vertical window:
 let Tlist_Use_Horiz_Window=0
 " Shorter commands to toggle Taglist display
-nnoremap TT :TlistToggle<CR>
-map <F4> :TlistToggle<CR>
+nnoremap <F2> :set nonumber!<CR>
+nmap <silent> <Leader>n :set nonumber!<CR>
+nmap <C-P> :NERDTreeToggle<CR>
+nmap <Leader>o :NERDTreeToggle<CR>
+nmap <F3> :NERDTreeToggle<CR>
+nmap <Leader>l :TlistToggle<CR>
+nmap <F4> :TlistToggle<CR>
 " Various Taglist diplay config:
 let Tlist_Use_Right_Window = 1
 let Tlist_Compact_Format = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
-nmap <C-P> :NERDTreeToggle<CR>
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
+nmap <buffer> <Leader>r :w<Esc>:!python %<CR>
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
