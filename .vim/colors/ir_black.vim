@@ -122,7 +122,7 @@ hi Statement        guifg=#6699CC     guibg=NONE        gui=NONE      ctermfg=li
 
 hi Special          guifg=#E18964     guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE
 hi Delimiter        guifg=#00A0A0     guibg=NONE        gui=NONE      ctermfg=cyan        ctermbg=NONE
-hi Operator         guifg=white       guibg=NONE        gui=NONE      ctermfg=white       ctermbg=NONE
+hi Operator         guifg=#96CBFE     guibg=NONE        gui=NONE      ctermfg=blue       ctermbg=NONE
 
 hi link Character       Constant
 hi link Boolean         Constant
@@ -204,6 +204,11 @@ hi link javaScriptNumber      Number
 
 " Special for Python
 hi  link pythonEscape         Keyword
+hi  link pythonSymbol         Operator
+hi  link pythonDottedName     Special
+hi  link pythonDecorator      Identifier
+hi  link pythonDot            Identifier
+hi  link pythonParen          Identifier
 
 
 " Special for CSharp
