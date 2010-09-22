@@ -99,6 +99,9 @@ if exists("python_highlight_all") && python_highlight_all != 0
   endif
 endif
 
+" Symbols
+syn match   pythonParen	"\((\|)\)[?#]\{0,1}" display skipwhite
+syn match   pythonSymbol	"\(\*\|+\|-\|/\|%\|>\|<\|=\)[?#]\{0,1}" display skipwhite
 " Keywords
 syn keyword pythonStatement	break continue del
 syn keyword pythonStatement	exec return
@@ -240,7 +243,7 @@ if exists("python_highlight_builtins") && python_highlight_builtins != 0
   syn keyword pythonBuiltinFunc	chr classmethod cmp coerce compile complex
   syn keyword pythonBuiltinFunc	delattr dict dir divmod enumerate eval
   syn keyword pythonBuiltinFunc	execfile file filter float format frozenset getattr
-  syn keyword pythonBuiltinFunc	globals hasattr hash help hex id 
+  syn keyword pythonBuiltinFunc	globals hasattr hash help hex id
   syn keyword pythonBuiltinFunc	input int intern isinstance
   syn keyword pythonBuiltinFunc	issubclass iter len list locals long map max
   syn keyword pythonBuiltinFunc	min next object oct open ord
