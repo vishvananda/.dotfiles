@@ -52,10 +52,10 @@ let g:CommandTAcceptSelectionSplitMap=['<C-CR>', '<C-s>', '<C-r>']
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
 let python_highlight_all = 1
-if &term =~ '^\(xterm\|screen\)'
+if &term =~ '^\(xterm\|screen\)' && $TERM_PROGRAM != 'Apple_Terminal'
   set t_Co=256
 endif
-colorscheme ir_black
 if &t_Co != 256
   let g:CSApprox_loaded=0
 endif
+colorscheme ir_black
