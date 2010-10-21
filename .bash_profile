@@ -55,7 +55,7 @@ function git_branch {
 
 function git_dirty {
   # only tracks modifications, not unknown files needing adds
-    if [ -z "`git status -s | awk '{print $1}' | grep '[ADMT]'`" ] ; then
+    if [ -z "`git status -s | awk '{print $1}' | grep '[ADMTU]'`" ] ; then
         return 1
     else
         return 0
