@@ -46,7 +46,11 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
 nmap <buffer> <Leader>r :w<Esc>:!python %<CR>
-
+" window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 let g:CommandTAcceptSelectionSplitMap=['<C-CR>', '<C-s>', '<C-r>']
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
