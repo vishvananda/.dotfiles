@@ -51,6 +51,9 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+" navigate more easily through wrapped lines
+noremap j gj
+noremap k gk
 let g:CommandTAcceptSelectionSplitMap=['<C-CR>', '<C-s>', '<C-r>']
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
