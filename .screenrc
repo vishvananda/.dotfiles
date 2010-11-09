@@ -1,11 +1,13 @@
-#terminfo and termcap for nice 256 color terminal
-# allow bold colors - necessary for some reason
-attrcolor b ".I"
+# terminfo and termcap for nice 256 color terminal
+# if unworking, uncomment the following. Sometimes bold is necessary
+# attrcolor b ".I"
 # tell screen how to set colors. AB = background, AF=foreground
+# terminfo and termcap for nice 256 color terminal
+termcapinfo screen "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 termcapinfo xterm "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
 termcapinfo xterm-color "Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm"
-# erase background with current bg color
-defbce "on"
+# uncomment to erase background with current bg color
+# defbce "on"
 startup_message off
 defscrollback 10000
 caption string "%?%F%{= Bk}%? %C%A %D %d-%m-%Y %{= kB} %t%= %?%F%{= Bk}%:%{= wk}%? %n "
