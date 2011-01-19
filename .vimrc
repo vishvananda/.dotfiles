@@ -1,5 +1,9 @@
 syntax on
 set number
+au BufRead,BufNewFile Vagrantfile set filetype=ruby
+au FileType ruby set tabstop=2
+au FileType ruby set softtabstop=2
+au FileType ruby set shiftwidth=2
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
 autocmd BufWritePre * :%s/\s\+$//e
