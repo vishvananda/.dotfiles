@@ -15,3 +15,4 @@ link .tmux.conf
 link .screenrc
 link .gitconfig
 link .vim
+link .bazaar
