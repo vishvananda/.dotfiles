@@ -1,5 +1,9 @@
 [user]
-        email = vishvananda@gmail.com
-        name = Vishvananda Ishaya
+	email = vishvananda@gmail.com
+	name = Vishvananda Ishaya
 [color]
 	ui = auto
+[core]
+	excludes = /home/vishvananda/.gitignore_global
+[alias]
+	review = push gerrit HEAD:refs/for/master
