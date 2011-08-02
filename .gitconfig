@@ -5,3 +5,5 @@
 	ui = auto
 [core]
 	excludes = /home/vishvananda/.gitignore_global
+[alias]
+	review = push gerrit HEAD:refs/for/master
