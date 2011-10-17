@@ -6,4 +6,6 @@
 [core]
 	excludes = /home/vishvananda/.gitignore_global
 [alias]
-	review = push gerrit HEAD:refs/for/master
+	review = !sh `git rev-parse --show-toplevel`/tools/rfc.sh
+[github]
+	user = vishvananda
