@@ -17,6 +17,7 @@ set hlsearch
 set wildmenu
 set wildmode=list:longest
 set history=1000
+set tags=tags;
 let mapleader=","
 set scrolloff=3
 " Uncomment the following for code folding with spacebar
@@ -58,6 +59,9 @@ map <C-l> <C-w>l
 " navigate more easily through wrapped lines
 noremap j gj
 noremap k gk
+" navigate through taglist
+nmap <Leader>[ :tp<CR>
+nmap <Leader>] :tn<CR>
 
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2

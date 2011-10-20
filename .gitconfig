@@ -9,3 +9,5 @@
 	review = !sh `git rev-parse --show-toplevel`/tools/rfc.sh
 [github]
 	user = vishvananda
+	token = 5968addcc07eb28818cc3b77835b1e53
+	email = vishvananda@gmail.com
