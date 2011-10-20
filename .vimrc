@@ -43,6 +43,8 @@ nmap <Leader>o :NERDTreeToggle<CR>
 nmap <F3> :NERDTreeToggle<CR>
 nmap <Leader>l :TlistToggle<CR>
 nmap <F4> :TlistToggle<CR>
+nnoremap <leader>a :Ack
+inoremap jj <Esc>
 " Various Taglist diplay config:
 let Tlist_Use_Right_Window = 1
 let Tlist_Compact_Format = 1
