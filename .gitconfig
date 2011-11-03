@@ -6,7 +6,7 @@
 [core]
 	excludes = /home/vishvananda/.gitignore_global
 [alias]
-	review = !sh `git rev-parse --show-toplevel`/tools/rfc.sh
+	cc = !"find `git rev-parse --show-toplevel` -name '*.pyc' -delete; git-checkout"
 [github]
 	user = vishvananda
 	token = 5968addcc07eb28818cc3b77835b1e53
