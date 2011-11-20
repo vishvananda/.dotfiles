@@ -6,7 +6,7 @@
 [core]
 	excludes = /home/vishvananda/.gitignore_global
 [alias]
-	cc = !"find `git rev-parse --show-toplevel` -name '*.pyc' -delete; git-checkout"
+    cc = !"TOP=$(git rev-parse --show-toplevel); find $TOP -name '*.pyc' -delete; ctags -R $TOP; git-checkout"
 [github]
 	user = vishvananda
 	token = 5968addcc07eb28818cc3b77835b1e53

@@ -135,3 +135,7 @@ shopt -s histappend
 HISTSIZE=100000
 HISTFILESIZE=100000
 shopt -s cmdhist
+
+# better back and forward search
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
