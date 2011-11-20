@@ -141,3 +141,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export EDITOR="vi"
 export CLICOLOR=1
 export LSCOLORS=ExGxcxdxCxegedabagacad
+
+# better back and forward search
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
