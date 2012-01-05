@@ -11,6 +11,7 @@ function link {
 link .vimrc
 link .bashrc
 link .bash_profile
+link .git-completion.bash
 link .tmux.conf
 link .screenrc
 link .gitconfig
