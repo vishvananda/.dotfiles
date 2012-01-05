@@ -55,7 +55,7 @@ function git_branch {
 
 function git_dirty {
   # only tracks modifications, not unknown files needing adds
-    if [ -z "`git status -s | awk '{print $1}' | grep '[ADMTU]'`" ] ; then
+    if [ -z "`git status -s | awk '{print $1}' | grep '[ADMTUR]'`" ] ; then
         return 1
     else
         return 0
@@ -137,7 +137,7 @@ HISTFILESIZE=100000
 shopt -s cmdhist
 
 # mac specific settings
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 export EDITOR="vi"
 export CLICOLOR=1
 export LSCOLORS=ExGxcxdxCxegedabagacad
