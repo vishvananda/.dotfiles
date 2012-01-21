@@ -46,10 +46,15 @@
 'snippets'	snipMate.txt	/*'snippets'*
 .snippet	snipMate.txt	/*.snippet*
 .snippets	snipMate.txt	/*.snippets*
+:Ack	ack.txt	/*:Ack*
+:AckAdd	ack.txt	/*:AckAdd*
 :CSApproxSnapshot	CSApprox.txt	/*:CSApproxSnapshot*
 :CommandT	command-t.txt	/*:CommandT*
 :CommandTBuffer	command-t.txt	/*:CommandTBuffer*
 :CommandTFlush	command-t.txt	/*:CommandTFlush*
+:CommandTJumps	command-t.txt	/*:CommandTJumps*
+:LAck	ack.txt	/*:LAck*
+:LAckAdd	ack.txt	/*:LAckAdd*
 :NERDTree	NERD_tree.txt	/*:NERDTree*
 :NERDTreeClose	NERD_tree.txt	/*:NERDTreeClose*
 :NERDTreeFromBookmark	NERD_tree.txt	/*:NERDTreeFromBookmark*
@@ -139,6 +144,9 @@ Tlist_Get_Tag_Prototype_By_Line()	taglist.txt	/*Tlist_Get_Tag_Prototype_By_Line(
 Tlist_Get_Tagname_By_Line()	taglist.txt	/*Tlist_Get_Tagname_By_Line()*
 Tlist_Set_App()	taglist.txt	/*Tlist_Set_App()*
 Tlist_Update_File_Tags()	taglist.txt	/*Tlist_Update_File_Tags()*
+ack	ack.txt	/*ack*
+ack-author	ack.txt	/*ack-author*
+ack.txt	ack.txt	/*ack.txt*
 command-t	command-t.txt	/*command-t*
 command-t-authors	command-t.txt	/*command-t-authors*
 command-t-commands	command-t.txt	/*command-t-commands*
@@ -221,6 +229,8 @@ g:CommandTCursorRightMap	command-t.txt	/*g:CommandTCursorRightMap*
 g:CommandTCursorStartMap	command-t.txt	/*g:CommandTCursorStartMap*
 g:CommandTDeleteMap	command-t.txt	/*g:CommandTDeleteMap*
 g:CommandTMatchWindowAtTop	command-t.txt	/*g:CommandTMatchWindowAtTop*
+g:CommandTMatchWindowReverse	command-t.txt	/*g:CommandTMatchWindowReverse*
+g:CommandTMaxCachedDirectories	command-t.txt	/*g:CommandTMaxCachedDirectories*
 g:CommandTMaxDepth	command-t.txt	/*g:CommandTMaxDepth*
 g:CommandTMaxFiles	command-t.txt	/*g:CommandTMaxFiles*
 g:CommandTMaxHeight	command-t.txt	/*g:CommandTMaxHeight*

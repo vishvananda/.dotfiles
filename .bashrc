@@ -146,3 +146,6 @@ export LSCOLORS=ExGxcxdxCxegedabagacad
 # better back and forward search
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+
+# make term pass ctrl sequences to vi properly
+stty -ixon

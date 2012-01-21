@@ -65,6 +65,8 @@ noremap k gk
 nmap <Leader>[ :tp<CR>
 nmap <Leader>] :tn<CR>
 
+let g:CommandTAcceptSplitMap=['<C-s>', '<C-CR>', '<C-b>']
+
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
 let python_highlight_all = 1
