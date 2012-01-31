@@ -70,7 +70,7 @@ let g:CommandTAcceptSplitMap=['<C-s>', '<C-CR>', '<C-b>']
 set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
 set laststatus=2
 let python_highlight_all = 1
-if &term =~ '^\(xterm\|screen\)' && $TERM_PROGRAM != 'Apple_Terminal'
+if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
   set t_Co=256
 endif
 if &t_Co != 256
