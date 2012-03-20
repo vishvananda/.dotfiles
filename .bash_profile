@@ -1,3 +1,6 @@
+if [ -z "$PS1" ]; then
+    exit
+fi
 . .bashrc
 if [ -n "$SSH_CONNECTION" ] && [ -z "$SCREEN_EXIST" ]; then
     export SCREEN_EXIST=1
