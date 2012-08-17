@@ -13,3 +13,5 @@
 	email = vishvananda@gmail.com
 [gitreview]
 	username = vishvananda
+[push]
+	default = current
