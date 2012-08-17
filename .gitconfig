@@ -11,3 +11,5 @@
 	user = vishvananda
 	token = 5968addcc07eb28818cc3b77835b1e53
 	email = vishvananda@gmail.com
+[push]
+	default = current
