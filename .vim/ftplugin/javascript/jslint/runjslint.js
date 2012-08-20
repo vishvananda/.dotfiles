@@ -1,8 +1,14 @@
 /*jslint laxbreak: true */
 
-if (typeof require != 'undefined') {
-    JSLINT = require('./jslint-core').JSLINT;
-    print = require('sys').puts;
+var fs, vm, sandbox, jslintCore = 'jslint-core.js';
+
+if (typeof require !== 'undefined') {
+    print = require('util').puts;
+    fs = require('fs');
+    vm = require('vm');
+    sandbox = {};
+    res = vm.runInNewContext(fs.readFileSync(jslintCore), sandbox, jslintCore);
+    JSLINT = sandbox.JSLINT;
 } else {
     load('jslint-core.js');
 }
@@ -73,14 +79,24 @@ readSTDIN(function(body) {
     var ok = JSLINT(body)
       , i
       , error
-      , errorCount;
+      , errorType
+      , nextError
+      , errorCount
+      , WARN = 'WARNING'
+      , ERROR = 'ERROR';
 
     if (!ok) {
         errorCount = JSLINT.errors.length;
         for (i = 0; i < errorCount; i += 1) {
             error = JSLINT.errors[i];
+            errorType = WARN;
+            nextError = i < errorCount ? JSLINT.errors[i+1] : null;
             if (error && error.reason && error.reason.match(/^Stopping/) === null) {
-                print([error.line, error.character, error.reason].join(":"));
+                // If jslint stops next, this was an actual error
+                if (nextError && nextError.reason && nextError.reason.match(/^Stopping/) !== null) {
+                    errorType = ERROR;
+                }
+                print([error.line, error.character, errorType, error.reason].join(":"));
             }
         }
     }
