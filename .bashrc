@@ -85,10 +85,17 @@ function vagrant_status {
     fi
 }
 
+function vm_status {
+    st=$(powervm 2>/dev/null)
+    if [ "$st" != "" ]; then
+        echo " [${st}]"
+    fi
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(dirty_git_prompt)\[\033[01;32m\]$(clean_git_prompt)\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\$ '
+    PS1='☁ ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(dirty_git_prompt)\[\033[01;32m\]$(clean_git_prompt)\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\[\033[01;35m\]$(vm_status)\[\033[00m\]\\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_branch)$(vagrant_status)\$ '
+    PS1='☁ ${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_branch)$(vagrant_status)\$ '
 fi
 unset color_prompt force_color_prompt
 
