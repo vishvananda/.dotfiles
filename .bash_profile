@@ -1,7 +1,7 @@
 if [ -z "$PS1" ]; then
     exit
 fi
-. .bashrc
+. ~/.bashrc
 if [ -n "$SSH_CONNECTION" ] && [ -z "$SCREEN_EXIST" ]; then
     export SCREEN_EXIST=1
     if which tmux; then
