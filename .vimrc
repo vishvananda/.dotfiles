@@ -52,6 +52,8 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
+nmap <buffer> <F6> :w<Esc>:!gcc -O3 % && ./a.out<CR>
+nmap <buffer> <F7> :w<Esc>:!go run -gcflags -m %<CR>
 nmap <buffer> <Leader>r :w<Esc>:!python %<CR>
 " window navigation
 map <C-h> <C-w>h
