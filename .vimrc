@@ -6,7 +6,7 @@ au FileType ruby set softtabstop=2
 au FileType ruby set shiftwidth=2
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
-autocmd BufWritePre * :%s/\s\+$//e
+"autocmd BufWritePre * :%s/\s\+$//e
 autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set tabstop=4
 set softtabstop=4
