@@ -1,13 +1,13 @@
 " Vim syntax file
-" Language:	Python
-" Maintainer:	Dmitry Vasiliev <dima@hlabs.spb.ru>
-" URL:		http://www.hlabs.spb.ru/vim/python.vim
-" Last Change:	2009-07-24
+" Language:     Python
+" Maintainer:	Dmitry Vasiliev <dima at hlabs dot org>
+" URL:		    https://github.com/hdima/vim-scripts/blob/master/syntax/python/python.vim
+" Last Change:	2012-02-11
 " Filenames:	*.py
-" Version:	2.6.5
+" Version:	    2.6.7
 "
 " Based on python.vim (from Vim 6.1 distribution)
-" by Neil Schemenauer <nas@python.ca>
+" by Neil Schemenauer <nas at python dot ca>
 "
 " Thanks:
 "
@@ -20,6 +20,8 @@
 "        for the patch fixing small typo
 "    Caleb Adamantine
 "        for the patch fixing highlighting for decorators
+"    Andrea Riciputi
+"        for the patch with new configuration options
 
 "
 " Options:
@@ -29,8 +31,14 @@
 "
 " Option names:
 "
-"    For highlight builtin functions:
+"    For highlight builtin functions and objects:
 "       python_highlight_builtins
+"
+"    For highlight builtin objects:
+"       python_highlight_builtin_objs
+"
+"    For highlight builtin funtions:
+"       python_highlight_builtin_funcs
 "
 "    For highlight standard exceptions:
 "       python_highlight_exceptions
@@ -74,7 +82,12 @@ endif
 if exists("python_highlight_all") && python_highlight_all != 0
   " Not override previously set options
   if !exists("python_highlight_builtins")
-    let python_highlight_builtins = 1
+    if !exists("python_highlight_builtin_objs")
+      let python_highlight_builtin_objs = 1
+    endif
+    if !exists("python_highlight_builtin_funcs")
+      let python_highlight_builtin_funcs = 1
+    endif
   endif
   if !exists("python_highlight_exceptions")
     let python_highlight_exceptions = 1
@@ -99,9 +112,6 @@ if exists("python_highlight_all") && python_highlight_all != 0
   endif
 endif
 
-" Symbols
-syn match   pythonParen	"\((\|)\)[?#]\{0,1}" display skipwhite
-syn match   pythonSymbol	"\(\*\|+\|-\|/\|%\|>\|<\|=\)[?#]\{0,1}" display skipwhite
 " Keywords
 syn keyword pythonStatement	break continue del
 syn keyword pythonStatement	exec return
@@ -233,11 +243,14 @@ syn match   pythonFloat		"\<\d\+\.\d*\([eE][+-]\=\d\+\)\=[jJ]\=" display
 syn match   pythonOctError	"\<0[oO]\=\o*[8-9]\d*[lL]\=\>" display
 syn match   pythonBinError	"\<0[bB][01]*[2-9]\d*[lL]\=\>" display
 
-if exists("python_highlight_builtins") && python_highlight_builtins != 0
-  " Builtin functions, types and objects
+if exists("python_highlight_builtin_objs") && python_highlight_builtin_objs != 0
+  " Builtin objects and types
   syn keyword pythonBuiltinObj	True False Ellipsis None NotImplemented
   syn keyword pythonBuiltinObj	__debug__ __doc__ __file__ __name__ __package__
+endif
 
+if exists("python_highlight_builtin_funcs") && python_highlight_builtin_funcs != 0
+  " Builtin functions
   syn keyword pythonBuiltinFunc	__import__ abs all any apply
   syn keyword pythonBuiltinFunc	basestring bin bool buffer bytearray bytes callable
   syn keyword pythonBuiltinFunc	chr classmethod cmp coerce compile complex
