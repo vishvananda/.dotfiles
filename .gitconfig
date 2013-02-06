@@ -13,3 +13,9 @@
 	email = vishvananda@gmail.com
 [push]
 	default = current
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = vishvananda@gmail.com
+	from = Vishvananda Ishaya <vishvananda@gmail.com>
