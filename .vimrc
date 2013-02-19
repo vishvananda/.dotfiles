@@ -8,6 +8,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 
+set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
 syntax on
 set number
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
