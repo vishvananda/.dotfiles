@@ -1,3 +1,13 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'kien/ctrlp.vim'
+
 syntax on
 set number
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
@@ -28,6 +38,14 @@ filetype plugin indent on
 set guifont=Monaco\ 18
 set mouse=a
 filetype plugin on
+" ctrl-p settings
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        \ },
+    \ 'fallback': 'find %s -type f'
+    \ }
 " Taglist variables
 " Display function name in status bar:
 let g:ctags_statusline=1
