@@ -165,3 +165,5 @@ bind '"\e[B": history-search-forward'
 
 # make term pass ctrl sequences to vi properly
 stty -ixon
+
+alias ix="curl -n -F 'f:1=<-' http://ix.io"
