@@ -159,11 +159,4 @@ bind '"\e[B": history-search-forward'
 # make term pass ctrl sequences to vi properly
 stty -ixon
 
-# Predictable SSH authentication socket location.
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-    rm -f /tmp/ssh-agent-$USER-screen
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
+alias ix="curl -n -F 'f:1=<-' http://ix.io"
