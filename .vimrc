@@ -5,7 +5,6 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-"Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 
 syntax on
