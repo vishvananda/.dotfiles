@@ -6,17 +6,23 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
+Bundle 'kien/rainbow_parentheses.vim'
 
 syntax on
 set number
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadBraces
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
-au FileType ruby set tabstop=2
-au FileType ruby set softtabstop=2
-au FileType ruby set shiftwidth=2
+au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au Filetype c nmap <buffer> <F5> :w<Esc>:!gcc -O3 % && ./a.out<CR>
+au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test<CR>
+au FileType go nmap <buffer> <F5> :w<Esc>:!go run -gcflags -m %<CR>
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
+au colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
 "autocmd BufWritePre * :%s/\s\+$//e
-autocmd colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -69,9 +75,6 @@ let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
 nmap <buffer> <F5> :w<Esc>:!python %<CR>
-nmap <buffer> <F6> :w<Esc>:!gcc -O3 % && ./a.out<CR>
-nmap <buffer> <F7> :w<Esc>:!go run -gcflags -m %<CR>
-nmap <buffer> <Leader>r :w<Esc>:!python %<CR>
 " window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
