@@ -8,7 +8,9 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'godlygeek/csapprox'
+Bundle 'Lokaltog/powerline'
 
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 set number
 au VimEnter * RainbowParenthesesToggle
@@ -88,7 +90,7 @@ noremap k gk
 nmap <Leader>[ :tp<CR>
 nmap <Leader>] :tn<CR>
 
-set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
+set noshowmode
 set laststatus=2
 let python_highlight_all = 1
 if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
