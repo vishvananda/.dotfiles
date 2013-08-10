@@ -8,8 +8,12 @@ Bundle 'gmarik/vundle'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tomtom/tcomment_vim'
+Bundle 'Lokaltog/powerline'
+Bundle 'godlygeek/csapprox'
 
-set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
+set rtp+=/usr/local/Cellar/go/*/misc/vim
+set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 set number
 au VimEnter * RainbowParenthesesToggle
@@ -19,7 +23,7 @@ au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au Filetype c nmap <buffer> <F5> :w<Esc>:!gcc -O3 % && ./a.out<CR>
 au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
-au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test<CR>
+au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go nmap <buffer> <F5> :w<Esc>:!go run -gcflags -m %<CR>
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
@@ -42,7 +46,7 @@ set scrolloff=3
 "nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
 "vnoremap <Space> zf
 filetype plugin indent on
-set guifont=Monaco\ 18
+set guifont=Menlo\ for\ Powerline:h12
 set mouse=a
 filetype plugin on
 " ctrl-p settings
@@ -76,7 +80,7 @@ let Tlist_Compact_Format = 1
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_GainFocus_On_ToggleOpen = 1
 let Tlist_File_Fold_Auto_Close = 1
-nmap <buffer> <F5> :w<Esc>:!python %<CR>
+nmap <buffer> <F5> :w<Esc>:!pypy %<CR>
 " window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -91,7 +95,7 @@ nmap <Leader>] :tn<CR>
 
 let g:CommandTAcceptSplitMap=['<C-s>', '<C-CR>', '<C-b>']
 
-set statusline=%F%m%r%h%w\ %y\ %{&ff}%=%04l,%04v\ %p%%\ %L
+set noshowmode
 set laststatus=2
 let python_highlight_all = 1
 if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
