@@ -7,6 +7,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/powerline'
 
