@@ -86,6 +86,10 @@ function vagrant_status {
 }
 
 function vm_status {
+    branch=`git_branch`
+    if [ -n "${branch}" ] ; then
+        return
+    fi
     st=$(powervm 2>/dev/null)
     if [ "$st" != "" ]; then
         echo " [${st}]"
