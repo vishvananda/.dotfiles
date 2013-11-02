@@ -11,6 +11,8 @@ Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/powerline'
 
+" for highlighting via apt-get install vim-syntax-go
+set rtp+=/usr/share/vim/addons
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 set number
