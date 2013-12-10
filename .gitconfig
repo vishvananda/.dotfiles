@@ -5,6 +5,7 @@
 	ui = auto
 [core]
 	excludes = /home/vishvananda/.gitignore_global
+	editor = vim
 [alias]
     cc = !"TOP=$(git rev-parse --show-toplevel); find $TOP -name '*.pyc' -delete; ctags -R $TOP; git-checkout"
 [github]
