@@ -79,6 +79,7 @@ function clean_git_prompt {
 }
 
 function vagrant_status {
+    return
     if [ -e './VagrantFile' ]; then
         st=`vagrant status | grep default | awk '{print substr($0, index($0, $2))}'`
         echo " [${st}]"
@@ -180,3 +181,5 @@ then
     ln -sf $SSH_AUTH_SOCK $SOCK
     export SSH_AUTH_SOCK=$SOCK
 fi
+
+alias adm="OS_USERNAME=admin OS_TENANT_NAME=admin OS_PASSWORD=secrete"
