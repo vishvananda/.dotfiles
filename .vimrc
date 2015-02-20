@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -10,7 +10,9 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'Lokaltog/powerline'
+Bundle 'fatih/vim-go'
 
+call vundle#end()
 " for highlighting via apt-get install vim-syntax-go
 set rtp+=/usr/share/vim/addons
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim

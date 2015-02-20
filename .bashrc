@@ -171,3 +171,4 @@ then
 fi
 
 EDITOR="vim"
+export GOPATH="/home/vishvananda/go"
