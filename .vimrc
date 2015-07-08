@@ -27,7 +27,8 @@ au Filetype c nmap <buffer> <F5> :w<Esc>:!gcc -O3 % && ./a.out<CR>
 au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
-au FileType go nmap <buffer> <F5> :w<Esc>:!go run -gcflags -m %<CR>
+au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
+au FileType go nmap <buffer> <F6> :w<Esc>:!go test `dirname %`<CR>
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
 au colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
