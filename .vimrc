@@ -22,7 +22,8 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadBraces
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
-au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au Filetype c nmap <buffer> <F5> :w<Esc>:!gcc -O3 % && ./a.out<CR>
 au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
