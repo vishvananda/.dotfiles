@@ -16,3 +16,15 @@
 [submodule ".vim/bundle/tcomment_vim"]
 	path = .vim/bundle/tcomment_vim
 	url = https://github.com/tomtom/tcomment_vim
+[submodule ".vim/bundle/csapprox"]
+	path = .vim/bundle/csapprox
+	url = https://github.com/godlygeek/csapprox
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = https://github.com/ervandew/supertab
+[submodule ".vim/bundle/pyflakes-vim"]
+	path = .vim/bundle/pyflakes-vim
+	url = https://github.com/kevinw/pyflakes-vim
