@@ -11,6 +11,9 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Lokaltog/powerline'
 Bundle 'godlygeek/csapprox'
+Bundle 'scrooloose/syntastic'
+Bundle 'ervandew/supertab'
+Bundle 'kevinw/pyflakes-vim'
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -26,6 +29,9 @@ au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go run -gcflags -m %<CR>
+au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
+
+
 highlight ExtraWhitespace ctermbg=red guibg=red
 :match ExtraWhitespace /\s\+$\|\t\+/
 au colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -58,30 +64,9 @@ let g:ctrlp_user_command = {
         \ },
     \ 'fallback': 'find %s -type f'
     \ }
-" Taglist variables
-" Display function name in status bar:
-let g:ctags_statusline=1
-" Automatically start script
-let generate_tags=1
-" Displays taglist results in a vertical window:
-let Tlist_Use_Horiz_Window=0
-" Shorter commands to toggle Taglist display
 nnoremap <F2> :set nonumber!<CR>
 nmap <silent> <Leader>n :set nonumber!<CR>
-nmap <C-P> :NERDTreeToggle<CR>
-nmap <Leader>o :NERDTreeToggle<CR>
-nmap <F3> :NERDTreeToggle<CR>
-nmap <Leader>l :TlistToggle<CR>
-nmap <F4> :TlistToggle<CR>
-nnoremap <leader>a :Ack
 inoremap jj <Esc>
-" Various Taglist diplay config:
-let Tlist_Use_Right_Window = 1
-let Tlist_Compact_Format = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_File_Fold_Auto_Close = 1
-nmap <buffer> <F5> :w<Esc>:!pypy %<CR>
 " window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -93,8 +78,6 @@ noremap k gk
 " navigate through taglist
 nmap <Leader>[ :tp<CR>
 nmap <Leader>] :tn<CR>
-
-let g:CommandTAcceptSplitMap=['<C-s>', '<C-CR>', '<C-b>']
 
 set noshowmode
 set laststatus=2
