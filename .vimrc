@@ -14,6 +14,7 @@ Bundle 'godlygeek/csapprox'
 Bundle 'scrooloose/syntastic'
 Bundle 'ervandew/supertab'
 Bundle 'kevinw/pyflakes-vim'
+Bundle 'fatih/vim-go'
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
