@@ -24,6 +24,7 @@ set number
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadBraces
 au BufRead,BufNewFile Vagrantfile set filetype=ruby
+au FileType markdown setlocal tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 spell spelllang=en_us
 au FileType ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType c setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
@@ -32,12 +33,16 @@ au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
+au FileType go nmap <buffer> <F6> :w<Esc>:!go test `dirname %`<CR>
 au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 
-highlight ExtraWhitespace ctermbg=red guibg=red
+highlight ExtraWhitespace ctermbg=darkgray guibg=#4E4E4E
+au colorscheme * highlight ExtraWhitespace ctermbg=darkgray guibg=#4E4E4E
 :match ExtraWhitespace /\s\+$\|\t\+/
-au colorscheme * highlight ExtraWhitespace ctermbg=red guibg=red
+highlight LongLine ctermbg=darkgray guibg=#4E4E4E
+:2match LongLine /\%>79v.\+/
+au colorscheme * highlight LongLine ctermbg=darkgray guibg=#4E4E4E
 "autocmd BufWritePre * :%s/\s\+$//e
 set tabstop=4
 set softtabstop=4
@@ -55,6 +60,7 @@ set scrolloff=3
 "set foldmethod=indent
 "nnoremap <silent> <Space> @=(foldlevel('.')?'za':'l')<CR>
 "vnoremap <Space> zf
+nmap <Leader>q gqip
 filetype plugin indent on
 set guifont=Monaco\ 18
 set mouse=a
