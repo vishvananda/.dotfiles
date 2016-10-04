@@ -34,3 +34,6 @@
 [submodule ".vim/bundle/vim-java-unused-imports"]
 	path = .vim/bundle/vim-java-unused-imports
 	url = https://github.com/akhaku/vim-java-unused-imports
+[submodule ".vim/bundle/vim-scala"]
+	path = .vim/bundle/vim-scala
+	url = https://github.com/derekwyatt/vim-scala
