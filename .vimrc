@@ -11,10 +11,11 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'Lokaltog/powerline'
 Bundle 'godlygeek/csapprox'
-Bundle 'scrooloose/syntastic'
-Bundle 'ervandew/supertab'
-Bundle 'kevinw/pyflakes-vim'
 Bundle 'fatih/vim-go'
+Bundle 'scrooloose/syntastic'
+"Bundle 'ervandew/supertab'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'akhaku/vim-java-unused-imports'
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
 set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
@@ -33,6 +34,16 @@ au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
 au FileType go nmap <buffer> <F6> :w<Esc>:!go test `dirname %`<CR>
 au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_command = "goimports"
 
 
 highlight ExtraWhitespace ctermbg=darkgray guibg=#4E4E4E
