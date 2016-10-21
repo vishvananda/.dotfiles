@@ -9,16 +9,20 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
-Bundle 'Lokaltog/powerline'
 Bundle 'godlygeek/csapprox'
 Bundle 'fatih/vim-go'
 Bundle 'scrooloose/syntastic'
-"Bundle 'ervandew/supertab'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'akhaku/vim-java-unused-imports'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'rust-lang/rust.vim'
+Bundle 'cespare/vim-toml'
+Bundle 'vim-airline/vim-airline'
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 syntax on
 set number
 au VimEnter * RainbowParenthesesToggle
@@ -100,6 +104,8 @@ nmap <Leader>] :tn<CR>
 set noshowmode
 set laststatus=2
 let python_highlight_all = 1
+let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.8.0/src'
+
 if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
   set t_Co=256
 endif
