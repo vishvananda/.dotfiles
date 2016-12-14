@@ -21,6 +21,8 @@ Bundle 'vim-airline/vim-airline'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
 syntax on
@@ -36,7 +38,7 @@ au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
-au FileType go nmap <buffer> <F6> :w<Esc>:!go test `dirname %`<CR>
+au FileType go nmap <buffer> <F6> :w<Esc>:GoBuild<CR>
 au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
