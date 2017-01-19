@@ -1,7 +1,7 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
@@ -9,18 +9,21 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/csapprox'
-Bundle 'Lokaltog/powerline'
 Bundle 'fatih/vim-go'
 Bundle 'scrooloose/syntastic'
-"Bundle 'ervandew/supertab'
 Bundle 'kevinw/pyflakes-vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'akhaku/vim-java-unused-imports'
+Bundle 'rust-lang/rust.vim'
+Bundle 'vim-airline/vim-airline'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'cespare/vim-toml'
 
-call vundle#end()
-" for highlighting via apt-get install vim-syntax-go
-set rtp+=/usr/share/vim/addons
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
 syntax on
 set number
 au VimEnter * RainbowParenthesesToggle
@@ -35,7 +38,7 @@ au FileType cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
-au FileType go nmap <buffer> <F6> :w<Esc>:!go test `dirname %`<CR>
+au FileType go nmap <buffer> <F6> :w<Esc>:GoBuild<CR>
 au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
