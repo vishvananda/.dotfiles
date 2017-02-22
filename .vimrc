@@ -18,11 +18,16 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'vim-airline/vim-airline'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'cespare/vim-toml'
+Bundle 'jceb/vim-hier'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:ycm_goto_buffer_command = 'vertical-split'
+
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 syntax on
 set number
@@ -40,6 +45,9 @@ au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
 au FileType go nmap <buffer> <F6> :w<Esc>:GoBuild<CR>
 au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
+au FileType rust :compiler cargo
+au FileType rust nmap <buffer> <F5> :w<Esc>:make build --features nightly --target x86_64-unknown-linux-musl<CR><CR>
+au FileType rust nmap <buffer> <F6> :w<Esc>:!cargo run --features nightly --target x86_64-unknown-linux-musl<CR>
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
@@ -91,6 +99,9 @@ let g:ctrlp_user_command = {
 nnoremap <F2> :set nonumber!<CR>
 nmap <silent> <Leader>n :set nonumber!<CR>
 inoremap jj <Esc>
+nmap <Leader>g :YcmCompleter GoTo<CR>
+nmap <Leader>k :cprev<CR>
+nmap <Leader>j :cnext<CR>
 " window navigation
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -99,9 +110,6 @@ map <C-l> <C-w>l
 " navigate more easily through wrapped lines
 noremap j gj
 noremap k gk
-" navigate through taglist
-nmap <Leader>[ :tp<CR>
-nmap <Leader>] :tn<CR>
 
 set noshowmode
 set laststatus=2
@@ -113,3 +121,4 @@ if &t_Co != 256
   let g:CSApprox_loaded=0
 endif
 colorscheme ir_black
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
