@@ -59,6 +59,8 @@ highlight LongLine ctermbg=darkgray guibg=#4E4E4E
 :2match LongLine /\%>79v.\+/
 au colorscheme * highlight LongLine ctermbg=darkgray guibg=#4E4E4E
 "autocmd BufWritePre * :%s/\s\+$//e
+set ttimeout
+set ttimeoutlen=0
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
