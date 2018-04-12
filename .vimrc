@@ -11,8 +11,7 @@ Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'godlygeek/csapprox'
 Bundle 'fatih/vim-go'
-Bundle 'scrooloose/syntastic'
-Bundle 'kevinw/pyflakes-vim'
+Bundle 'w0rp/ale'
 Bundle 'akhaku/vim-java-unused-imports'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'rust-lang/rust.vim'
@@ -21,8 +20,6 @@ Bundle 'vim-airline/vim-airline'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 
 set rtp+=/usr/local/Cellar/go/*/misc/vim
 syntax on
