@@ -1,6 +1,6 @@
 [user]
 	email = vishvananda@gmail.com
-	name = Vishvananda Ishaya
+	name = Vishvananda Abrams
 [color]
 	ui = auto
 [core]
@@ -10,7 +10,6 @@
     cc = !"TOP=$(git rev-parse --show-toplevel); find $TOP -name '*.pyc' -delete; ctags -R $TOP; git-checkout"
 [github]
 	user = vishvananda
-	token = 5968addcc07eb28818cc3b77835b1e53
 	email = vishvananda@gmail.com
 [push]
 	default = current
@@ -19,4 +18,10 @@
 	smtpserverport = 587
 	smtpencryption = tls
 	smtpuser = vishvananda@gmail.com
-	from = Vishvananda Ishaya <vishvananda@gmail.com>
+	from = Vishvananda Abrams <vishvananda@gmail.com>
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/
+[diff]
+	algorithm = histogram
+[pull]
+	ff = only

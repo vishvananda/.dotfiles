@@ -187,3 +187,5 @@ alias adm="OS_USERNAME=admin OS_TENANT_NAME=admin OS_PASSWORD=secrete"
 alias sshvm="ssh-add; ssh dev"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
