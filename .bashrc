@@ -98,9 +98,10 @@ function vm_status {
 }
 
 if [ "$color_prompt" = yes ]; then
-    PS1='☁ ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(dirty_git_prompt)\[\033[01;32m\]$(clean_git_prompt)\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\[\033[01;35m\]$(vm_status)\[\033[00m\]\\$ '
+
+    PS1='⚡${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(dirty_git_prompt)\[\033[01;32m\]$(clean_git_prompt)\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\[\033[01;35m\]$(vm_status)\[\033[00m\]\\$ '
 else
-    PS1='☁ ${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_branch)$(vagrant_status)\$ '
+    PS1='☁${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_branch)$(vagrant_status)\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -113,7 +114,24 @@ xterm*|rxvt*)
     ;;
 esac
 
-PS1="\[\033[G\]$PS1"
+check_cursor_position() {
+    # Skip check if input is from a paste
+    if [[ $- == *i* ]] && [[ "$(readlink /proc/$$/fd/0)" != /dev/tty ]]; then
+        return
+    fi
+    trap '' INT TERM HUP QUIT
+    # Save current cursor position
+    echo -en "\033[6n" # Ask for the cursor position
+    read -sdR CURPOS   # Read the response
+    CURPOS=${CURPOS#*[} # Extract the row and column (e.g., "12;34")
+    CURCOL=${CURPOS#*;} # Extract the column number
+    if [ "$CURCOL" != "1" ]; then
+        echo # Insert a newline if we're not at the start of the line
+    fi
+    trap - INT TERM HUP QUIT
+}
+
+PROMPT_COMMAND=check_cursor_position
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -186,6 +204,10 @@ alias adm="OS_USERNAME=admin OS_TENANT_NAME=admin OS_PASSWORD=secrete"
 
 alias sshvm="ssh-add; ssh dev"
 
-export PATH="$HOME/.cargo/bin:$PATH"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Added by `rbenv init` on Sun Nov  3 18:09:33 PST 2024
+eval "$(rbenv init - --no-rehash bash)"
+. "$HOME/.cargo/env"
+export BASH_SILENCE_DEPRECATION_WARNING=1

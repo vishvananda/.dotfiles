@@ -21,6 +21,8 @@
 	from = Vishvananda Abrams <vishvananda@gmail.com>
 [url "ssh://git@github.com/"]
     insteadOf = https://github.com/
+[url "ssh://git@git.soma.salesforce.com/"]
+    insteadOf = https://git.soma.salesforce.com/
 [diff]
 	algorithm = histogram
 [pull]

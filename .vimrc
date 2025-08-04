@@ -18,6 +18,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'cespare/vim-toml'
 Bundle 'vim-airline/vim-airline'
 
+let g:python3_host_prog = '/opt/homebrew/bin/python3'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -36,7 +37,10 @@ au FileType cpp nmap <buffer> <F5> :w<Esc>:!make test-debug<CR>
 au FileType go setlocal tabstop=2 softtabstop=2 shiftwidth=2 noexpandtab
 au FileType go nmap <buffer> <F5> :w<Esc>:!go build `dirname %` && ./$(basename $(dirname $(realpath %)))<CR>
 au FileType go nmap <buffer> <F6> :w<Esc>:GoBuild<CR>
-au FileType python nmap <buffer> <F5> :w<Esc>:!python %<CR>
+au FileType python nmap <buffer> <F5> :w<Esc>:!python3 %<CR>
+au FileType javascript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType typescript setlocal tabstop=2 softtabstop=2 shiftwidth=2
+au FileType sh nmap <buffer> <F5> :w<Esc>:!bash start.sh test.sh<CR>
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
