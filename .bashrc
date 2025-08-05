@@ -123,7 +123,7 @@ check_cursor_position() {
     # Save current cursor position
     echo -en "\033[6n" # Ask for the cursor position
     read -sdR CURPOS   # Read the response
-    CURPOS=${CURPOS#*[} # Extract the row and column (e.g., "12;34")
+    CURPOS=${CURPOS#*\[} # Extract the row and column (e.g., "12;34")
     CURCOL=${CURPOS#*;} # Extract the column number
     if [ "$CURCOL" != "1" ]; then
         echo # Insert a newline if we're not at the start of the line
@@ -211,3 +211,4 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - --no-rehash bash)"
 . "$HOME/.cargo/env"
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

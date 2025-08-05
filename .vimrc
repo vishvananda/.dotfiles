@@ -5,7 +5,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'ycm-core/YouCompleteMe'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'tomtom/tcomment_vim'
@@ -80,7 +80,7 @@ set scrolloff=3
 "vnoremap <Space> zf
 nmap <Leader>q gqip
 filetype plugin indent on
-set guifont=Menlo\ for\ Powerline:h12
+set guifont=Noto\ for\ Powerline:h12
 set mouse=a
 filetype plugin on
 " ctrl-p settings
