@@ -18,7 +18,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'cespare/vim-toml'
 Bundle 'vim-airline/vim-airline'
 
-let g:python3_host_prog = '/opt/homebrew/bin/python3'
+let g:python3_host_prog = expand('~/.config/nvim/venv/bin/python')
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -111,10 +111,15 @@ set laststatus=2
 let python_highlight_all = 1
 let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.8.0/src'
 
-if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
-  set t_Co=256
-endif
-if &t_Co != 256
+if has('nvim')
+  set termguicolors
   let g:CSApprox_loaded=0
+else
+  if &term =~ '^\(256\|screen\)' || $TERM_PROGRAM =='iTerm.app'
+    set t_Co=256
+  endif
+  if &t_Co != 256
+    let g:CSApprox_loaded=0
+  endif
 endif
 colorscheme ir_black
