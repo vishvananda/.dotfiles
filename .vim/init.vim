@@ -1,1 +1,1 @@
-/Users/vabrams/.vimrc
+../.vimrc
