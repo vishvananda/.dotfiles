@@ -18,7 +18,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'cespare/vim-toml'
 Bundle 'vim-airline/vim-airline'
 
-let g:python3_host_prog = expand('~/.config/nvim/venv/bin/python')
+"let g:python3_host_prog = expand('~/.config/nvim/venv/bin/python')
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 

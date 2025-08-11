@@ -205,8 +205,6 @@ alias adm="OS_USERNAME=admin OS_TENANT_NAME=admin OS_PASSWORD=secrete"
 alias sshvm="ssh-add; ssh dev"
 
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Added by `rbenv init` on Sun Nov  3 18:09:33 PST 2024
 eval "$(rbenv init - --no-rehash bash)"
 . "$HOME/.cargo/env"
