@@ -37,3 +37,6 @@
 [submodule ".vim/bundle/ale"]
 	path = .vim/bundle/ale
 	url = https://github.com/w0rp/ale
+[submodule ".vim/bundle/ir_black"]
+	path = .vim/bundle/ir_black
+	url = https://github.com/werth/ir_black.git

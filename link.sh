@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DST=${1:-"`pwd`"}
+DST=${1:-$HOME}
 ABSPATH="$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")"
 SRC=`dirname $ABSPATH`
 
@@ -17,3 +17,6 @@ link .screenrc
 link .gitconfig
 link .vim
 link .bazaar
+mkdir -p ~/.config/nvim/
+ln -s ~/.vimrc ~/.config/nvim/init.vim
+

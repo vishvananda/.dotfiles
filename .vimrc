@@ -17,6 +17,7 @@ Bundle 'derekwyatt/vim-scala'
 Bundle 'rust-lang/rust.vim'
 Bundle 'cespare/vim-toml'
 Bundle 'vim-airline/vim-airline'
+Bundle 'twerth/ir_black'
 
 let g:python3_host_prog = expand('~/.config/nvim/venv/bin/python')
 let g:airline#extensions#tabline#enabled = 1
