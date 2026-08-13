@@ -49,33 +49,40 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-function git_branch {
-  git branch --no-color 2> /dev/null | egrep '^\*' | sed -e 's/^* //'
-}
+function update_git_prompt {
+    local line branch oid dirty
+    git_prompt_branch=
+    git_prompt_dirty_text=
+    git_prompt_clean_text=
+    git_prompt_in_repo=
 
-function git_dirty {
-  # only tracks modifications, not unknown files needing adds
-    if [ -z "`git status -s | awk '{print $1}' | grep '[ADMTUR]'`" ] ; then
-        return 1
-    else
-        return 0
-    fi
-}
+    while IFS= read -r line; do
+        case "$line" in
+            '# branch.head '*)
+                branch=${line#\# branch.head }
+                git_prompt_in_repo=1
+                ;;
+            '# branch.oid '*)
+                oid=${line#\# branch.oid }
+                ;;
+            1\ *|2\ *|u\ *)
+                dirty=1
+                ;;
+        esac
+    done < <(GIT_OPTIONAL_LOCKS=0 git status --porcelain=v2 --branch \
+        --untracked-files=no --no-ahead-behind 2>/dev/null)
 
-function dirty_git_prompt {
-    branch=`git_branch`
-    if [ -z "${branch}" ] ; then
-        return
+    if [ "$branch" = '(detached)' ]; then
+        branch=${oid:0:7}
     fi
-    git_dirty && echo " (${branch})"
-}
-
-function clean_git_prompt {
-    branch=`git_branch`
-    if [ -z "${branch}" ] ; then
-        return
+    if [ -n "$branch" ]; then
+        git_prompt_branch=$branch
+        if [ -n "$dirty" ]; then
+            git_prompt_dirty_text=" ($branch)"
+        else
+            git_prompt_clean_text=" ($branch)"
+        fi
     fi
-    git_dirty || echo " (${branch})"
 }
 
 function vagrant_status {
@@ -87,8 +94,7 @@ function vagrant_status {
 }
 
 function vm_status {
-    branch=`git_branch`
-    if [ -n "${branch}" ] ; then
+    if [ -n "$git_prompt_in_repo" ] ; then
         return
     fi
     st=$(powervm 2>/dev/null)
@@ -99,9 +105,9 @@ function vm_status {
 
 if [ "$color_prompt" = yes ]; then
 
-    PS1='⚡${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]$(dirty_git_prompt)\[\033[01;32m\]$(clean_git_prompt)\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\[\033[01;35m\]$(vm_status)\[\033[00m\]\\$ '
+    PS1='⚡${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[01;31m\]${git_prompt_dirty_text}\[\033[01;32m\]${git_prompt_clean_text}\[\033[00m\]\[\033[01;35m\]$(vagrant_status)\[\033[00m\]\[\033[01;35m\]$(vm_status)\[\033[00m\]\\$ '
 else
-    PS1='☁${debian_chroot:+($debian_chroot)}\u@\h:\w$(git_branch)$(vagrant_status)\$ '
+    PS1='☁${debian_chroot:+($debian_chroot)}\u@\h:\w${git_prompt_branch}$(vagrant_status)\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -131,7 +137,7 @@ check_cursor_position() {
     trap - INT TERM HUP QUIT
 }
 
-PROMPT_COMMAND=check_cursor_position
+PROMPT_COMMAND='update_git_prompt; check_cursor_position'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
