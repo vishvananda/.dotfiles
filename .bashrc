@@ -137,7 +137,7 @@ check_cursor_position() {
     trap - INT TERM HUP QUIT
 }
 
-PROMPT_COMMAND='update_git_prompt; check_cursor_position'
+PROMPT_COMMAND='refresh_ssh_auth_sock; update_git_prompt; check_cursor_position'
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -197,14 +197,30 @@ stty -ixon
 
 alias ix="curl -n -F 'f:1=<-' http://ix.io"
 
-# Predictable SSH authentication socket location.
-SOCK="/tmp/ssh-agent-$USER-screen"
-if test $SSH_AUTH_SOCK && [ $SSH_AUTH_SOCK != $SOCK ]
-then
-    rm -f /tmp/ssh-agent-$USER-screen
-    ln -sf $SSH_AUTH_SOCK $SOCK
-    export SSH_AUTH_SOCK=$SOCK
-fi
+# Keep each shell on a live forwarding socket. A later SSH connection must
+# not replace the socket used by an existing tmux shell.
+refresh_ssh_auth_sock() {
+    local candidate shared_socket="/tmp/ssh-agent-$USER-screen"
+    local candidates=("${SSH_AUTH_SOCK:-}")
+    if [[ -n "${TMUX:-}" ]]; then
+        candidate=$(tmux show-environment SSH_AUTH_SOCK 2>/dev/null)
+        [[ "$candidate" == SSH_AUTH_SOCK=* ]] && candidates+=("${candidate#SSH_AUTH_SOCK=}")
+    fi
+    candidates+=("$shared_socket" "$HOME"/.ssh/agent/* /tmp/ssh-*/agent.*)
+    for candidate in "${candidates[@]}"; do
+        [[ -S "$candidate" ]] || continue
+        [[ "$(stat -Lc %u "$candidate" 2>/dev/null)" == "$UID" ]] || continue
+        candidate=$(readlink -f "$candidate")
+        export SSH_AUTH_SOCK="$candidate"
+        # Compatibility for already-running shells that still use the old
+        # shared path: repair it only when its previous connection has ended.
+        if [[ ! -S "$shared_socket" ]]; then
+            ln -sfn -- "$candidate" "$shared_socket" 2>/dev/null || true
+        fi
+        return 0
+    done
+}
+refresh_ssh_auth_sock
 
 alias adm="OS_USERNAME=admin OS_TENANT_NAME=admin OS_PASSWORD=secrete"
 
