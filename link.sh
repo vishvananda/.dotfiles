@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-DST=${1:-"`pwd`"}
+DST=${1:-$HOME}
 ABSPATH="$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")"
 SRC=`dirname $ABSPATH`
 
 function link {
- rm $DST/$1
- ln -s $SRC/$1 $DST/$1
+ rm -f "$DST/$1"
+ ln -s "$SRC/$1" "$DST/$1"
 }
 
 link .vimrc
@@ -17,3 +17,8 @@ link .screenrc
 link .gitconfig
 link .vim
 link .bazaar
+
+link .gitignore_global
+mkdir -p "$DST/.local/bin" "$DST/.config/nvim"
+link .local/bin/attach-vish-tmux
+link .config/nvim/init.vim

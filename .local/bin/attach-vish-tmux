@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+socket_dir="/tmp/tmux-$(id -u)"
+socket="$socket_dir/vish"
+state_dir="$HOME/.local/state"
+pid_file="$state_dir/vish-tmux.pid"
+target_file="$state_dir/vish-tmux.target"
+
+server_pid() {
+    env -u TMUX tmux -S "$socket" display-message -p '#{pid}' 2>/dev/null || true
+}
+
+saved_server_alive() {
+    [[ -r "$pid_file" ]] || return 1
+    IFS= read -r saved_pid < "$pid_file"
+    [[ "$saved_pid" =~ ^[0-9]+$ ]] || return 1
+    [[ -r "/proc/$saved_pid/comm" ]] || return 1
+    IFS= read -r saved_comm < "/proc/$saved_pid/comm"
+    [[ "$saved_comm" == tmux* ]]
+}
+
+recover_saved_server() {
+    saved_server_alive || return 1
+    current_pid=''
+    if [[ -S "$socket" ]]; then
+        current_pid=$(server_pid)
+        [[ "$current_pid" == "$saved_pid" ]] && return 0
+        displaced="$socket.displaced.${current_pid:-stale}.$(date +%s)"
+        mv -- "$socket" "$displaced"
+        printf 'Preserved the other tmux socket at %s\n' "$displaced" >&2
+    fi
+    mkdir -p -m 700 "$socket_dir"
+    kill -USR1 "$saved_pid"
+    for ((attempt = 0; attempt < 30; ++attempt)); do
+        if [[ -S "$socket" ]] && [[ $(server_pid) == "$saved_pid" ]]; then
+            return 0
+        fi
+        sleep 0.1
+    done
+    if [[ ! -e "$socket" && -n "${displaced:-}" ]]; then
+        mv -- "$displaced" "$socket"
+    fi
+    printf 'Could not restore tmux server %s at %s\n' "$saved_pid" "$socket" >&2
+    return 2
+}
+
+mkdir -p "$state_dir"
+mkdir -p -m 700 "$socket_dir"
+chmod 700 "$socket_dir"
+if ! recover_saved_server; then
+    if [[ ${1:-} == --recover-existing-only ]]; then
+        printf 'Original vish tmux server could not be restored; no new session was created.\n' >&2
+        exit 1
+    fi
+    if saved_server_alive; then
+        printf 'A tmux server is present, but the saved vish server could not be reached. No new session was created.\n' >&2
+        exit 1
+    fi
+fi
+
+target=vish
+if [[ -r "$target_file" ]]; then
+    IFS= read -r target < "$target_file"
+fi
+
+# A socket can survive the last session exiting. Ask tmux whether the target
+# exists, and let new-session reconnect or replace a stale socket as needed.
+if ! env -u TMUX tmux -S "$socket" has-session -t "=$target" 2>/dev/null; then
+    if [[ ${1:-} == --recover-existing-only ]]; then
+        printf 'The saved tmux server has no session named %s; no session was created.\n' "$target" >&2
+        exit 1
+    fi
+    mkdir -p -m 700 "$socket_dir"
+    if ! env -u TMUX tmux -S "$socket" new-session -d -s "$target" -e SCREEN_EXIST=1; then
+        # Another SSH login may have created the session after our check.
+        env -u TMUX tmux -S "$socket" has-session -t "=$target" 2>/dev/null || exit 1
+    fi
+fi
+server_pid > "$pid_file"
+printf '%s\n' "$target" > "$target_file"
+
+if [[ ${1:-} == --recover-only || ${1:-} == --recover-existing-only ]]; then
+    printf 'vish tmux server %s is reachable at %s\n' "$(server_pid)" "$socket"
+    exit 0
+fi
+
+env -u TMUX tmux -2 -S "$socket" attach-session -t "=$target"
